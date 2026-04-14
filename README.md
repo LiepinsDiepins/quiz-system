@@ -12,5 +12,5 @@ git pull origin main
 
 Pushot kodu: 
 git add .
-git commit -m "update"
-git push origin main
+git commit -m "pievienota jauna funkcija"
+git push origin feature-ja-funkcija

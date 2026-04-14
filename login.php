@@ -51,17 +51,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<div class="box">
-    <h2>Pieteikties</h2>
-    <?php if ($error): ?>
-        <div class="error"><?= $error ?></div>
-    <?php endif; ?>
-    <form method="POST">
-        <input type="text" name="username" placeholder="Lietotājvārds" value="<?= htmlspecialchars($_POST['username'] ?? '') ?>">
-        <input type="password" name="password" placeholder="Parole">
-        <button type="submit">Pieteikties</button>
-    </form>
-    <div class="link">Nav konta? <a href="register.php">Reģistrēties</a></div>
+    <main>
+        <div class="box">
+            <h2>Pieteikties</h2>
+            <?php if ($error): ?>
+                <div class="error"><?= $error ?></div>
+            <?php endif; ?>
+            <form method="POST">
+                <input type="text" name="username" placeholder="Lietotājvārds" value="<?= htmlspecialchars($_POST['username'] ?? '') ?>">
+                <input type="password" name="password" placeholder="Parole">
+                <button type="submit">Pieteikties</button>
+            </form>
+        <div class="link">Nav konta? <a href="register.php">Reģistrēties</a></div>
 </div>
+    </main>
 </body>
 </html>

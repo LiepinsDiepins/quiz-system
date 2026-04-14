@@ -19,12 +19,14 @@ if (isset($_SESSION['user_id'])) {
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<div class="box">
-    <h2>Quiz Sistēma</h2>
-    <p style="text-align:center; margin-bottom:1.5rem; color:#666;">Pieteikties vai reģistrēties lai sāktu</p>
-    <a href="login.php"><button>Pieteikties</button></a>
-    <br><br>
-    <a href="register.php"><button style="background:#6b7280;">Reģistrēties</button></a>
-</div>
+    <main>
+        <div class="box">
+            <h2>Quiz Sistēma</h2>
+            <p style="text-align:center; margin-bottom:1.5rem; color:#666;">Pieteikties vai reģistrēties lai sāktu</p>
+            <a href="login.php"><button>Pieteikties</button></a>
+            <br><br>
+            <a href="register.php"><button style="background:#6b7280;">Reģistrēties</button></a>
+        </div>
+    </main>
 </body>
 </html>
