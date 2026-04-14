@@ -3,36 +3,41 @@ session_start();
 require 'db.php';
 
 if (isset($_SESSION['user_id'])) {
-    header('Location: index.php');
-    exit;
+    header("Location: index.php");
+    exit();
 }
 
-$error = '';
+$error = "";
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $username = trim($_POST['username']);
-    $password = $_POST['password'];
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    if (empty($username) || empty($password)) {
-        $error = 'Lūdzu aizpildi visus laukus!';
+    $username = trim($_POST["username"]);
+    $password = $_POST["password"];
+
+    if ($username == "" || $password == "") {
+        $error = "Aizpildi visus laukus!";
     } else {
-        $stmt = $db->prepare("SELECT * FROM users WHERE username = ?");
-        $stmt->execute([$username]);
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if ($user && password_verify($password, $user['password'])) {
-            $_SESSION['user_id'] = $user['id'];
-            $_SESSION['username'] = $user['username'];
-            $_SESSION['role'] = $user['role'];
+        $sql = $db->prepare("SELECT * FROM users WHERE username = ?");
+        $sql->execute([$username]);
 
-            if ($user['role'] === 'admin') {
-                header('Location: pages/admin.php');
+        $user = $sql->fetch();
+
+        if ($user) {
+
+            if (password_verify($password, $user["password"])) {
+
+                $_SESSION["user_id"] = $user["id"];
+                $_SESSION["username"] = $user["username"];
+
+                header("Location: pages/dashboard.php");
+                exit();
             } else {
-                header('Location: pages/dashboard.php');
+                $error = "Nepareiza parole!";
             }
-            exit;
+
         } else {
-            $error = 'Nepareizs lietotājvārds vai parole!';
+            $error = "Lietotājs neeksistē!";
         }
     }
 }

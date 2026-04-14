@@ -3,35 +3,40 @@ session_start();
 require 'db.php';
 
 if (isset($_SESSION['user_id'])) {
-    header('Location: index.php');
-    exit;
+    header("Location: index.php");
+    exit();
 }
 
-$error = '';
-$success = '';
+$error = "";
+$success = "";
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $username = trim($_POST['username']);
-    $password = $_POST['password'];
-    $confirm = $_POST['confirm'];
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    if (empty($username) || empty($password)) {
-        $error = 'Lūdzu aizpildi visus laukus!';
-    } elseif ($password !== $confirm) {
-        $error = 'Paroles nesakrīt!';
-    } elseif (strlen($password) < 6) {
-        $error = 'Parolei jābūt vismaz 6 simboli!';
-    } else {
-        $stmt = $db->prepare("SELECT id FROM users WHERE username = ?");
-        $stmt->execute([$username]);
+    $username = trim($_POST["username"]);
+    $password = $_POST["password"];
+    $confirm = $_POST["confirm"];
 
-        if ($stmt->fetch()) {
-            $error = 'Šāds lietotājvārds jau eksistē!';
+    if ($username == "" || $password == "") {
+        $error = "Aizpildi visus laukus!";
+    }
+    else if ($password != $confirm) {
+        $error = "Paroles nesakrīt!";
+    }
+    else {
+
+        $check = $db->prepare("SELECT * FROM users WHERE username = ?");
+        $check->execute([$username]);
+
+        if ($check->fetch()) {
+            $error = "Šāds lietotājs jau ir!";
         } else {
-            $hash = password_hash($password, PASSWORD_DEFAULT);
-            $stmt = $db->prepare("INSERT INTO users (username, password, role) VALUES (?, ?, 'user')");
-            $stmt->execute([$username, $hash]);
-            $success = 'Reģistrācija veiksmīga! Vari pieteikties.';
+
+            $hashed = password_hash($password, PASSWORD_DEFAULT);
+
+            $sql = $db->prepare("INSERT INTO users (username, password) VALUES (?, ?)");
+            $sql->execute([$username, $hashed]);
+
+            $success = "Reģistrācija veiksmīga!";
         }
     }
 }

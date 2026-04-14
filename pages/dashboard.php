@@ -22,7 +22,7 @@ if (!isset($_SESSION['user_id'])) {
 </nav>
 <div class="container">
     <h2>Pieejamie testi</h2>
-    <p style="color:#666; margin-top:1rem;">Testi tiks pievienoti drīzumā...</p>
+    <p style="color:#666; margin-top:1rem;">Šeit pectam quiz bus</p>
 </div>
 </body>
 </html>
