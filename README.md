@@ -14,3 +14,6 @@ Pushot kodu:
 git add .
 git commit -m "pievienota jauna funkcija"
 git push origin feature-ja-funkcija
+
+tad kad jau ir izdarits, dari:
+git push origin main
