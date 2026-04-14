@@ -19,6 +19,10 @@ if (!isset($_SESSION['user_id'])) {
 <nav>
     <span>Sveiks, <strong><?= htmlspecialchars($_SESSION['username']) ?></strong>!</span>
     <a href="../logout.php"><button style="width:auto; padding: 8px 16px;">Iziet</button></a>
+
+    <a href="test-quiz.php">
+    <button style="margin-top: 20px;">Test lapa</button>
+</a>
 </nav>
 <div class="container">
     <h2>Pieejamie testi</h2>
