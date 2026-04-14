@@ -50,21 +50,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<div class="box">
-    <h2>Reģistrēties</h2>
-    <?php if ($error): ?>
-        <div class="error"><?= $error ?></div>
-    <?php endif; ?>
-    <?php if ($success): ?>
-        <div class="success"><?= $success ?></div>
-    <?php endif; ?>
-    <form method="POST">
-        <input type="text" name="username" placeholder="Lietotājvārds" value="<?= htmlspecialchars($_POST['username'] ?? '') ?>">
-        <input type="password" name="password" placeholder="Parole">
-        <input type="password" name="confirm" placeholder="Apstiprini paroli">
-        <button type="submit">Reģistrēties</button>
-    </form>
-    <div class="link">Jau ir konts? <a href="login.php">Pieteikties</a></div>
-</div>
+    <main>
+        <div class="box">
+            <h2>Reģistrēties</h2>
+            <?php if ($error): ?>
+                <div class="error"><?= $error ?></div>
+            <?php endif; ?>
+            <?php if ($success): ?>
+                <div class="success"><?= $success ?></div>
+            <?php endif; ?>
+            <form method="POST">
+                <input type="text" name="username" placeholder="Lietotājvārds" value="<?= htmlspecialchars($_POST['username'] ?? '') ?>">
+                <input type="password" name="password" placeholder="Parole">
+                <input type="password" name="confirm" placeholder="Apstiprini paroli">
+                <button type="submit">Reģistrēties</button>
+            </form>
+            <div class="link">Jau ir konts? <a href="login.php">Pieteikties</a></div>
+        </div>
+    </main>
 </body>
 </html>
